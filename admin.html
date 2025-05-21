@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deforestation Detection</title>
+    <style>
+        /* Set the background image */
+        body {
+            background-image: url('images/green.jpg');
+            background-size: cover; /* Make sure the image covers the whole screen */
+            background-position: center; /* Center the image */
+            height: 100vh; /* Set the height of the page to full viewport height */
+            margin: 0; /* Remove default margin */
+            font-family: Arial, sans-serif; /* Optional, set font */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white; /* Text color */
+        }
+
+        h1 {
+            font-family: 'Times New Roman', Times, serif; /* Optional, set font */
+            text-align: center;
+            color: #039fff;tool
+            margin-bottom: 30px;
+        }
+
+        form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #2e6da4;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #1f4b75;
+        }
+
+        .results {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .image-container img, .marked-image img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+        }
+
+        .marked-image {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h2, h3 {
+            color: #2e6da4;
+        }
+
+        /* Adjust the spacing and layout for mobile */
+        @media (max-width: 600px) {
+            form {
+                padding: 15px;
+            }
+            
+            .image-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .image-container div {
+                margin-bottom: 20px;
+            }
+
+            button {
+                padding: 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Deforestation Detection Tool</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="image1">Upload first image:</label>
+            <input type="file" name="image1" accept="image/*" required>
+            
+            <label for="image2">Upload second image:</label>
+            <input type="file" name="image2" accept="image/*" required>
+            
+            <button type="submit">Upload and Analyze</button>
+        </form>
+
+        {% if deforested_percentage %}
+            <div class="results">
+                <h2>Results:</h2>
+                <p>Deforested Area: {{ deforested_percentage }}</p>
+                <p>Image 1 Class: {{ image1_class }} (Confidence: {{ image1_confidence }})</p>
+                <p>Image 2 Class: {{ image2_class }} (Confidence: {{ image2_confidence }})</p>
+
+                <div class="image-container">
+                    <div>
+                        <h3>Uploaded Image 1:</h3>
+                        <img src="{{ image1_path }}" alt="Uploaded Image 1">
+                    </div>
+                    <div>
+                        <h3>Uploaded Image 2:</h3>
+                        <img src="{{ image2_path }}" alt="Uploaded Image 2">
+                    </div>
+                </div>
+
+                <div class="marked-image">
+                    <h3>Marked Image:</h3>
+                    <img src="{{ marked_image_path }}" alt="Marked Image">
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

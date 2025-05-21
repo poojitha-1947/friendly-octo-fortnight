@@ -1,0 +1,84 @@
+/* body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f3f4f7, #e2eafc);
+    color: #333;
+    margin: 0;
+    padding: 20px;
+} */
+body {
+    font-family: Arial, sans-serif;
+    background: url('greenforest.jpg');
+    background-size: cover;  /* Ensure the image covers the entire background */
+    background-position: center;  /* Centers the background image */
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #2e6da4;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="file"] {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #2e6da4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1f4b75;
+}
+
+.results {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.image-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.image-container img, .marked-image img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+}
+
+.marked-image {
+    text-align: center;
+    margin-top: 20px;
+}
+
+h2, h3 {
+    color: #2e6da4;
+}

@@ -1,0 +1,71 @@
+<!-- /templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deforestation Detection</title>
+    <style>
+        /* Style for the image container (first two images side by side) */
+        .image-container {
+            display: flex;
+            justify-content: space-around;  /* Align images with space in between */
+            gap: 20px;  /* Adds space between the images */
+        }
+
+        /* Style for the images (same size for all images) */
+        .image-container img, .marked-image img {
+            width: 45%;  /* Limit the width of each image */
+            height: auto;  /* Maintain aspect ratio */
+        }
+
+        /* Style for the marked image */
+        .marked-image {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Additional styling for the results section */
+        h3 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Deforestation Detection Tool</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="image1">Upload first image:</label>
+        <input type="file" name="image1" accept="image/*" required><br><br>
+        
+        <label for="image2">Upload second image:</label>
+        <input type="file" name="image2" accept="image/*" required><br><br>
+        
+        <button type="submit">Upload and Analyze</button>
+    </form>
+
+    {% if deforested_percentage %}
+        <h2>Results:</h2>
+        <p>Deforested Area: {{ deforested_percentage }}</p>
+        <p>Image 1 Class: {{ image1_class }} (Confidence: {{ image1_confidence }})</p>
+        <p>Image 2 Class: {{ image2_class }} (Confidence: {{ image2_confidence }})</p>
+
+        <!-- Display Image 1 and Image 2 side by side -->
+        <div class="image-container">
+            <div>
+                <h3>Uploaded Image 1:</h3>
+                <img src="{{ image1_path }}" alt="Uploaded Image 1">
+            </div>
+            <div>
+                <h3>Uploaded Image 2:</h3>
+                <img src="{{ image2_path }}" alt="Uploaded Image 2">
+            </div>
+        </div>
+
+        <!-- Display Marked Image below the first two -->
+        <div class="marked-image">
+            <h3>Marked Image:</h3>
+            <img src="{{ marked_image_path }}" alt="Marked Image">
+        </div>
+    {% endif %}
+</body>
+</html>
